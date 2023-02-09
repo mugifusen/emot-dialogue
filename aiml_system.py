@@ -22,30 +22,18 @@ class AimlSystem:
         return {'utt':'はじめまして，雑談を始めましょう', 'end':False}
 
     def reply(self, input):
+        emotion_dic = {'suki': '🥰', 'ikari': '😡', 'kowa': '😱', 'yasu': '😊', 'iya': '😫', 'aware': '😭', 'takaburi': '🤩', 'odoroki': '🙄', 'haji': '🤭', 'yorokobi': '😄'}
         sessionId = input['sessionId']
         utt = input['utt']  #uttにはユーザの入力した文字列が入っている
-        print(utt)
         # uttに'名前'
         emotion_analyzer = MLAsk()
         json_emot = emotion_analyzer.analyze(utt)
-        if json_emot['emotion'] == None:
-            flag = -1
-        else:
-            flag = 0
         utt = self.tagger.parse(utt)
         # 対応するセッションのkernelを取り出し，respondでマッチするルールを探す
         response = self.sessiondic[sessionId].respond(utt)
-        if flag == -1:
-            #感情が読み取れなかったとき(ニュートラル)
-            return {'utt': response + '😑', 'end':False}
-        else:
-            print(sessionId, utt, response)
-            if 'POSITIVE' in json_emot['orientation']:
-                return {'utt': response + '😆', 'end':False}
-            else:
-                return {'utt': response + '😭', 'end':False}
-
-
+        emotion = json_emot['representative'][0]
+        return {'utt': response + emotion_dic[emotion], 'end':False}
+    
 if __name__ == '__main__':
     system = AimlSystem()
     bot = TelegramBot(system)
