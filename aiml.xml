@@ -1,95 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 一部のpattern部を形態素解析した結果に置き換える必要あり→済み -->
 <aiml version="1.0.1" encoding="UTF-8">
-
   <category>
     <pattern>おはよう</pattern>
     <template>おはようございます</template>
   </category>
-
   <category>
     <pattern>* 大阪 *</pattern>
     <template>大阪といえばたこ焼きですね．</template>
   </category>
   <category>
     <pattern>* たこ焼き *</pattern>
-    <template>大阪名物だねー．</template>
+    <template>大阪名物だねー</template>
   </category>
-    <category>
-    <pattern>* へ 旅行 に 行き まし た</pattern>
-    <template><star/>に旅行ですか，いいねー．</template>
+  <category>
+    <pattern>* 旅行 に 行き まし た</pattern>
+    <template>そうなんですね．また行きたいですか？</template>
   </category>
-    <category>
-    <pattern>飲み物だと * が好き</pattern>
+  <category>
+    <pattern>* 好き * ご飯 *</pattern>
+    <template>どんなご飯が？</template>
+  </category>
+  <category>
+    <pattern>飲み物 だと * が 好き</pattern>
     <template><star/>、いいね私も好きです</template>
   </category>
-    <category>
-    <pattern>私の名前は * です</pattern>
-    <template><star/>さんですか，よろしくね．</template>
+  <category>
+    <pattern>私 の 名前 は * です</pattern>
+    <template>ふーん，そうなんだ<think><set name='username'><star /></set></think></template>
   </category>
   <category>
-      <pattern>私 の 名前 は * です</pattern>
-      <template><set name="username"><star/></set>さんですか，よろしくお願いします．</template>
-   </category>
-   
-   <category>
-      <pattern>さようなら</pattern>
-      <template><get name="username"/>さん，また会おうね．</template>
-   </category>
-   <category>
-      <pattern>私 の 名前 は * です</pattern>
-      <template>おっけー、覚えたよ<think><set name="username"><star/></set></think></template>
-   </category>
-   
-   <category>
-      <pattern>さようなら</pattern>
-      <template>じゃあね，<get name="username"/>さん．</template>
-  </category>
-  
-
-   <category>
-      <pattern>* 映画 *</pattern>
-      <template>海外映画おもしろいよね</template>
-  </category>
-   <category>
-      <pattern>はい</pattern>
-      <that>最近面白い映画を見ましたか？</that>
-      <template>どんなタイトル？</template>
-  </category>
-   <category>
-      <pattern>いいえ</pattern>
-      <that>最近面白い映画を見ましたか？</that>
-      <template>私のオススメはミステリーです．</template>
-  </category>
-
-   <category>
-      <pattern>* 好き *</pattern>
-      <template>どんなご飯が？</template>
-  </category>
-   <category>
-      <pattern>はい</pattern>
-      <that>どんなご飯が？</that>
-      <template>どこのお店がオススメですか？教えてください</template>
+    <pattern>さようなら</pattern>
+    <template>じゃあね，<get name="username"/>さん．</template>
   </category>
   <category>
-      <pattern>いいえ</pattern>
-      <that>どんなご飯が？</that>
-      <template>もっと食べ歩こうよ！</template>
+    <pattern>映画 好き な ん だ</pattern>
+    <template>それでそれで？</template>
   </category>
-
-
-   <category>
-      <pattern>元気 です か ？</pattern>
-      <template>
-         <random>
-            <li> 元気！</li>
-            <li> まぁまぁかな </li>
-            <li> 進捗がやばいのでね </li>
-            <li> つらい </li>
-         </random>
-      </template>
-   </category>
-   
+  <category>
+    <pattern>* 映画 *</pattern>
+    <template>最近面白い映画を見ましたか？</template>
+  </category>
+  <category>
+    <pattern>はい</pattern>
+    <that>最近面白い映画を見ましたか？</that>
+    <template>どんなタイトル？</template>
+  </category>
+  <category>
+    <pattern>いいえ</pattern>
+    <that>最近面白い映画を見ましたか？</that>
+    <template>私のオススメはミステリーです</template>
+  </category>
+  <category>
+    <pattern>元気 です か</pattern>
+    <template>
+       <random>
+          <li>元気！</li>
+          <li>まぁまぁかな</li>
+          <li>進捗がやばいのでね</li>
+          <li>つらい</li>
+       </random>
+    </template>
+  </category>
   <category>
     <pattern>好き な 食べ物</pattern>
     <template>たこ焼き</template>
@@ -106,40 +77,37 @@
     <pattern>食べ物 * 好き ？</pattern>
     <template><srai>好き な 食べ物</srai></template>
   </category>
-
-   <category>
-      <pattern>*</pattern>
-      <that> そうなんですね．また行きたいですか？ </that>
-      <template>
-        <random>
-          <li> そうなんですか，他に最近何か楽しかったことは？</li>
-          <li> へー，ちなみに誰と行ったんですか？</li>
-          <li> なるほどね．誰と行ったんですか？ </li>
-        </random>
-      </template>
+  <category>
+    <pattern>*</pattern>
+    <that>そうなんですね．また行きたいですか？</that>
+    <template>
+      <random>
+        <li>そうなんですか，他に最近何か楽しかったことは？</li>
+        <li>へー，ちなみに誰と行ったんですか？</li>
+        <li>なるほどね．誰と行ったんですか？ </li>
+      </random>
+    </template>
   </category>
-
-   <category>
-      <pattern>*</pattern>
-      <that> なるほどね．誰と行ったんですか？ </that>
-      <template>
-        <random>
-          <li> そうなんですか，他に最近何か楽しかったことは？</li>
-          <li> そうなんですね．また行きたいですか？ </li>
-        </random>
-      </template>
+  <category>
+    <pattern>*</pattern>
+    <that>なるほどね．誰と行ったんですか？</that>
+    <template>
+      <random>
+        <li>そうなんですか，他に最近何か楽しかったことは？</li>
+        <li>そうなんですね．また行きたいですか？ </li>
+      </random>
+    </template>
   </category>
-
   <category>
     <pattern>*</pattern>
     <template>
-        <random>
-          <li> そうなんだー！</li>
-          <li> なんかいいね！ </li>
-          <li> へぇ〜！ </li>
-          <li> もっと教えてよー </li>
-          <li> なるほどね〜 </li>
-        </random>
+      <random>
+        <li>そうなんだー！</li>
+        <li>なんかいいね！</li>
+        <li>へぇ〜！</li>
+        <li>もっと教えてよー</li>
+        <li>なるほどね〜</li>
+      </random>
     </template>
   </category>
 </aiml>
